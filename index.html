@@ -94,9 +94,9 @@
 <!-- ============ HOME ============ -->
 <div id="home" class="page active">
   <div class="hero">
-    <div class="kicker">Straight from South America</div>
-    <h1>The mate your abuela<br>would've bought</h1>
-    <p>Real yerba, brought straight from Argentina and Uruguay by people who actually drink it. Priced near cost. You pay the real shipping — and still come out ahead.</p>
+    <div class="kicker">Specialty groceries, imported directly</div>
+    <h1>The pantry your abuela<br>would've stocked</h1>
+    <p>Real specialty food — yerba mate, olive oil, and more — brought straight from the source by people who actually use it. Priced near cost. You pay the real shipping, and still come out ahead.</p>
     <button class="btn" onclick="show('home');document.getElementById('products-sec').scrollIntoView();">Shop the yerba</button>
   </div>
 
@@ -118,8 +118,9 @@
   </section>
 
   <section id="products-sec" class="white" style="padding-top:0;">
-    <h2 class="section-title">Our selection</h2>
-    <p class="section-sub">Each one tasted, chosen, and imported by us</p>
+    <h2 class="section-title">Our shelves</h2>
+    <p class="section-sub">Specialty groceries, imported directly — tasted and chosen by us</p>
+    <div id="cat-tabs" style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-bottom:30px;"></div>
     <div class="products" id="products-grid"></div>
     <p class="muted" id="products-status" style="text-align:center;margin-top:16px;"></p>
   </section>
@@ -280,6 +281,57 @@
   </section>
 </div>
 
+<!-- ============ PRODUCT PAGE (educar → vender) ============ -->
+<div id="product" class="page">
+  <!-- 1. Origen + historia (arriba, sin precio) -->
+  <section class="white" style="text-align:center;">
+    <p class="muted" id="pp-kicker" style="letter-spacing:2px;text-transform:uppercase;margin-bottom:10px;color:#854F0B;"></p>
+    <h2 class="section-title" id="pp-title" style="font-size:36px;"></h2>
+    <p class="honesty-text" id="pp-intro"></p>
+    <p style="margin-top:16px;"><span class="linkish" onclick="show('home');document.getElementById('products-sec').scrollIntoView();">← Back to all yerbas</span></p>
+  </section>
+
+  <!-- 2. Foto lifestyle -->
+  <div style="height:220px; background:#C0DD97; display:flex; align-items:center; justify-content:center; color:#27500A; font-size:14px;">
+    [ PHOTO — the mate, the hands, the ritual ]
+  </div>
+
+  <!-- 3. Por qué esta yerba (beneficios) -->
+  <section style="background:#FAEEDA;">
+    <h2 class="section-title">Why this yerba</h2>
+    <div class="cols3">
+      <div class="col"><h3>Flavor</h3><p id="pp-flavor"></p></div>
+      <div class="col"><h3>Origin</h3><p id="pp-origin"></p></div>
+      <div class="col"><h3>Best for</h3><p id="pp-best"></p></div>
+    </div>
+  </section>
+
+  <!-- 4. Cómo usar (educación pura) — se adapta a la categoría -->
+  <section class="white">
+    <h2 class="section-title" id="pp-usetitle">How to use it</h2>
+    <div class="cols3" id="pp-usesteps" style="max-width:900px;"></div>
+  </section>
+
+  <!-- 5. Franja: ahora sí, comprar -->
+  <section style="background:#EF9F27;text-align:center;padding:22px 5%;">
+    <h2 style="font-family:'Lora',serif;font-size:22px;color:#412402;margin:0;">Now that you know it — take some home</h2>
+  </section>
+
+  <!-- 6. La compra (foto paquete + precio + botón), AL FINAL -->
+  <section class="white">
+    <div style="max-width:640px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:24px;align-items:center;">
+      <div id="pp-photo" style="height:200px;border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:56px;"></div>
+      <div>
+        <h3 style="font-family:'Lora',serif;font-size:24px;color:#085041;margin-bottom:4px;" id="pp-buyname"></h3>
+        <div class="muted" id="pp-size" style="margin-bottom:10px;"></div>
+        <div style="font-size:24px;font-weight:500;color:#0F6E56;margin-bottom:16px;" id="pp-price"></div>
+        <button class="btn" style="width:100%;" id="pp-addbtn">🧺 Add to the box</button>
+        <p class="muted" style="text-align:center;margin-top:12px;">🧉 A little gift ships with every box</p>
+      </div>
+    </div>
+  </section>
+</div>
+
 <footer><p>The Abuela — the kettle's always on 🧉</p></footer>
 
 <script>
@@ -295,22 +347,116 @@ const FLAT_SHIPPING_CENTS = 899;
 const MARKET_MULTIPLIER = 1.65;
 
 const FALLBACK_PRODUCTS = [
-  {sku:'CDM-500', title:'Cruz de Malta - Yerba Mate', size_label:'500g', price_cents:990, icon:'🧉', bg:'#9FE1CB'},
-  {sku:'PIP-1000', title:'Pipore Tradicional - Yerba Mate', size_label:'1kg', price_cents:1656, icon:'🌿', bg:'#C0DD97'},
-  {sku:'PLA-500', title:'Playadito Suave - Yerba Mate', size_label:'500g', price_cents:960, icon:'🍃', bg:'#FAC775'},
-  {sku:'PLA-1000', title:'Playadito Suave - Yerba Mate', size_label:'1kg', price_cents:1800, icon:'🍃', bg:'#FAC775'},
-  {sku:'ROS-1000', title:'Rosamonte 55 Aniversario - Yerba Mate', size_label:'1kg', price_cents:1380, icon:'🔥', bg:'#F5C4B3'},
-  {sku:'TAR-1000', title:'Taragui 4Flex - Yerba Mate', size_label:'1kg', price_cents:1698, icon:'⚡', bg:'#9FE1CB'},
-  {sku:'LM-CM', title:'La Merced Campo & Monte - Yerba Mate', size_label:'', price_cents:1740, icon:'🏔️', bg:'#C0DD97'},
-  {sku:'TAR-AZ', title:'Taragui 4Flex O.C. Azul - Yerba Mate', size_label:'', price_cents:2256, icon:'⭐', bg:'#F5C4B3'},
-  {sku:'AMATR-1000', title:'Amanda Tradicional Nueva - Yerba Mate', size_label:'1kg', price_cents:1422, icon:'🌱', bg:'#FAC775'},
-  {sku:'ROS-TR', title:'Rosamonte Tradicional 55 Aniv. - Yerba Mate', size_label:'', price_cents:720, icon:'🔥', bg:'#F5C4B3'},
-  {sku:'AMA4-500', title:'Amanda 4 - Yerba Mate', size_label:'500g', price_cents:720, icon:'🌱', bg:'#9FE1CB'},
-  {sku:'ROS-SU', title:'Rosamonte Suave 55 Aniv. - Yerba Mate', size_label:'', price_cents:1560, icon:'🔥', bg:'#F5C4B3'},
+  // ---- Yerba Mate ----
+  {sku:'CDM-500', category:'Yerba Mate', title:'Cruz de Malta - Yerba Mate', size_label:'500g', price_cents:990, icon:'🧉', bg:'#9FE1CB'},
+  {sku:'PIP-1000', category:'Yerba Mate', title:'Pipore Tradicional - Yerba Mate', size_label:'1kg', price_cents:1656, icon:'🌿', bg:'#C0DD97'},
+  {sku:'PLA-500', category:'Yerba Mate', title:'Playadito Suave - Yerba Mate', size_label:'500g', price_cents:960, icon:'🍃', bg:'#FAC775'},
+  {sku:'PLA-1000', category:'Yerba Mate', title:'Playadito Suave - Yerba Mate', size_label:'1kg', price_cents:1800, icon:'🍃', bg:'#FAC775'},
+  {sku:'ROS-1000', category:'Yerba Mate', title:'Rosamonte 55 Aniversario - Yerba Mate', size_label:'1kg', price_cents:1380, icon:'🔥', bg:'#F5C4B3'},
+  {sku:'TAR-1000', category:'Yerba Mate', title:'Taragui 4Flex - Yerba Mate', size_label:'1kg', price_cents:1698, icon:'⚡', bg:'#9FE1CB'},
+  {sku:'LM-CM', category:'Yerba Mate', title:'La Merced Campo & Monte - Yerba Mate', size_label:'', price_cents:1740, icon:'🏔️', bg:'#C0DD97'},
+  {sku:'TAR-AZ', category:'Yerba Mate', title:'Taragui 4Flex O.C. Azul - Yerba Mate', size_label:'', price_cents:2256, icon:'⭐', bg:'#F5C4B3'},
+  {sku:'AMATR-1000', category:'Yerba Mate', title:'Amanda Tradicional Nueva - Yerba Mate', size_label:'1kg', price_cents:1422, icon:'🌱', bg:'#FAC775'},
+  {sku:'ROS-TR', category:'Yerba Mate', title:'Rosamonte Tradicional 55 Aniv. - Yerba Mate', size_label:'', price_cents:720, icon:'🔥', bg:'#F5C4B3'},
+  {sku:'AMA4-500', category:'Yerba Mate', title:'Amanda 4 - Yerba Mate', size_label:'500g', price_cents:720, icon:'🌱', bg:'#9FE1CB'},
+  {sku:'ROS-SU', category:'Yerba Mate', title:'Rosamonte Suave 55 Aniv. - Yerba Mate', size_label:'', price_cents:1560, icon:'🔥', bg:'#F5C4B3'},
+  // ---- Olive Oil (ejemplos — ajustá SKUs, precios y origen a tu inventario real) ----
+  {sku:'OLI-EV-500', category:'Olive Oil', title:'Extra Virgin Olive Oil - Cold Pressed', size_label:'500ml', price_cents:1690, icon:'🫒', bg:'#C0DD97'},
+  {sku:'OLI-EV-1L', category:'Olive Oil', title:'Extra Virgin Olive Oil - Cold Pressed', size_label:'1L', price_cents:2990, icon:'🫒', bg:'#C0DD97'},
+  {sku:'OLI-ARB-500', category:'Olive Oil', title:'Arbequina Olive Oil - Single Estate', size_label:'500ml', price_cents:1990, icon:'🌿', bg:'#EAF3DE'},
+  {sku:'OLI-PIC-500', category:'Olive Oil', title:'Picual Olive Oil - Robust', size_label:'500ml', price_cents:1890, icon:'🫒', bg:'#9FE1CB'},
 ];
+
+// ================== PRODUCT STORY DATA (educar antes de vender) ==================
+// Contenido educativo por SKU: origen, historia, perfil, para quién.
+const STORY = {
+  'CDM-500': { origin:'Argentina', region:'', kicker:'A daily classic',
+    intro:'Smooth, balanced, and endlessly drinkable, Cruz de Malta is one of Argentina\'s most beloved traditional yerbas. Aged to develop a mellow, well-rounded flavor without harsh bitterness.',
+    flavor:'Smooth, mild, gently earthy', best:'All-day drinking, first-time mate drinkers', energy:'Gentle, steady lift' },
+  'PIP-500': { origin:'Misiones, Argentina', region:'Misiones', kicker:'Bold and native',
+    intro:'Grown and processed in the heart of Misiones, where yerba mate is native. Known for its rich, robust character and long-lasting flavor.',
+    flavor:'Intense, full-bodied, robust', best:'Experienced drinkers who like it strong', energy:'Strong, lasting' },
+  'PIP-1000': { origin:'Misiones, Argentina', region:'Misiones', kicker:'Bold and native',
+    intro:'Grown and processed in the heart of Misiones, where yerba mate is native. Rich, robust, and long-lasting — the family size for those who drink it every day.',
+    flavor:'Intense, full-bodied, robust', best:'Experienced drinkers, everyday households', energy:'Strong, lasting' },
+  'PLA-500': { origin:'Corrientes, Argentina', region:'Corrientes', kicker:'A cooperative classic',
+    intro:'Cooperative-grown in the red soil of Corrientes, where the yerba fields meet the wetlands. Aged for a smooth, even flavor that\'s become a staple in Argentine homes.',
+    flavor:'Balanced, even, smooth', best:'Everyday drinking, those who value consistency', energy:'Even, reliable' },
+  'PLA-1000': { origin:'Corrientes, Argentina', region:'Corrientes', kicker:'A cooperative classic',
+    intro:'Cooperative-grown in the red soil of Corrientes, where the yerba fields meet the wetlands. Smooth, even, and dependable — the size that lives on the family table.',
+    flavor:'Balanced, even, smooth', best:'Everyday drinking, whole households', energy:'Even, reliable' },
+  'ROS-1000': { origin:'Misiones, Argentina', region:'Misiones', kicker:'55th Anniversary',
+    intro:'A special 55th Anniversary edition from Rosamonte, one of Argentina\'s most respected producers. Aged naturally for a deep, traditional flavor.',
+    flavor:'Rich, aromatic, full-bodied', best:'Rosamonte fans and daily drinkers', energy:'Robust' },
+  'ROS-TR': { origin:'Misiones, Argentina', region:'Misiones', kicker:'Traditional',
+    intro:'Rosamonte is a Misiones institution, aged naturally for a deep, traditional flavor with a slightly smoky character that made it a household name.',
+    flavor:'Robust, traditional, slightly smoky', best:'Lovers of strong, traditional mate', energy:'Robust' },
+  'ROS-SU': { origin:'Misiones, Argentina', region:'Misiones', kicker:'The smoother side',
+    intro:'The smoother side of Rosamonte. Keeps the signature quality while softening the intensity — an easier, mellower cup that\'s still full of flavor.',
+    flavor:'Mild, mellow, smooth', best:'Those who want Rosamonte quality, gentler', energy:'Gentle' },
+  'TAR-500': { origin:'Corrientes, Argentina', region:'Corrientes', kicker:'Strong and energizing',
+    intro:'One of Argentina\'s best-selling yerbas, known for its strong, energizing character. The 4Flex packaging keeps it fresh longer.',
+    flavor:'Strong, intense, energizing', best:'Drinkers who want a powerful, bold mate', energy:'Strong, energizing' },
+  'TAR-1000': { origin:'Corrientes, Argentina', region:'Corrientes', kicker:'Strong and energizing',
+    intro:'One of Argentina\'s best-selling yerbas — strong, energizing, and long-lasting. The family size for those who want power in every round.',
+    flavor:'Strong, intense, energizing', best:'Bold drinkers, everyday households', energy:'Strong, energizing' },
+  'TAR-AZ': { origin:'Corrientes, Argentina', region:'Corrientes', kicker:'Premium blend',
+    intro:'A premium selection from Taragüí in the distinctive Azul line. Smooth despite its strength, with a refined balance that sets it apart.',
+    flavor:'Balanced, refined, strong', best:'Those seeking a premium blend', energy:'Strong but refined' },
+  'LM-CM': { origin:'Argentina', region:'', kicker:'Campo & Monte',
+    intro:'A distinctive blend that captures the character of the yerba fields and native forest. Full-flavored and aromatic with a naturally rich profile.',
+    flavor:'Full-flavored, aromatic, rich', best:'Drinkers seeking a bold, characterful mate', energy:'Rich, full' },
+  'AMATR-1000': { origin:'Misiones, Argentina', region:'Misiones', kicker:'The full tradition',
+    intro:'The full traditional Amanda experience. Robust, aromatic, and rich — a classic Argentine mate with real body and a lasting flavor.',
+    flavor:'Robust, aromatic, traditional', best:'Traditional drinkers who want full body', energy:'Full-bodied' },
+  'AMASU-1000': { origin:'Misiones, Argentina', region:'Misiones', kicker:'Softer & gentler',
+    intro:'A softer take on the classic Amanda. Milder and gentler on the palate, ideal for those who prefer a smoother, less intense mate.',
+    flavor:'Mild, soft, smooth', best:'Those who like a gentle brew', energy:'Gentle' },
+  'AMA4-500': { origin:'Misiones, Argentina', region:'Misiones', kicker:'Everyday classic',
+    intro:'One of Argentina\'s most popular everyday yerbas from Misiones. Clean, traditional taste with a smooth body — a dependable choice for daily rounds.',
+    flavor:'Traditional, smooth, clean', best:'Everyday drinking, traditional taste', energy:'Steady' },
+  // ---- Olive Oil ----
+  'OLI-EV-500': { origin:'Mediterranean', region:'', kicker:'Cold pressed',
+    intro:'A true extra virgin olive oil, cold pressed to keep its aroma and nutrients intact. Bright, green, and peppery — the everyday oil that makes simple food taste like more.',
+    flavor:'Fruity, peppery, balanced', best:'Everyday cooking, finishing, dipping', energy:'' },
+  'OLI-EV-1L': { origin:'Mediterranean', region:'', kicker:'Cold pressed',
+    intro:'The family size of our cold-pressed extra virgin — for the kitchen that cooks every day. Bright, green, and honest, with nothing added and nothing hidden.',
+    flavor:'Fruity, peppery, balanced', best:'Daily cooking, whole households', energy:'' },
+  'OLI-ARB-500': { origin:'Spain', region:'Catalonia', kicker:'Single estate',
+    intro:'Arbequina olives, grown and pressed on a single estate. Delicate, buttery, and mild — the olive oil for those who like it smooth, with a soft almond finish.',
+    flavor:'Buttery, mild, soft almond finish', best:'Finishing, salads, delicate dishes', energy:'' },
+  'OLI-PIC-500': { origin:'Spain', region:'Andalucía', kicker:'Robust',
+    intro:'Picual olives from Andalucía, known for their bold, robust character and long shelf life. Peppery and intense — the oil that stands up to strong food.',
+    flavor:'Robust, peppery, intense', best:'Cooking, roasting, bold dishes', energy:'' },
+};
+// Pasos de uso según categoría (yerba se ceba, aceite se usa)
+const USE_STEPS = {
+  'Yerba Mate': [
+    ['1. Fill','Fill your mate about three-quarters full with yerba.'],
+    ['2. Tilt & pour','Tilt to one side, pour warm water (70–80°C, never boiling) into the hollow.'],
+    ['3. Sip & refill','Sip through the bombilla, refill, and pass it on. Never stir.'],
+  ],
+  'Olive Oil': [
+    ['1. Finish','Drizzle raw over salads, bread, or a finished dish to taste it at its best.'],
+    ['2. Cook','Use for sautéing and roasting — it holds up beautifully to heat.'],
+    ['3. Store','Keep it cool and dark, away from the stove. Good oil rewards good storage.'],
+  ],
+};
+function useStepsFor(cat){
+  return USE_STEPS[cat] || USE_STEPS['Yerba Mate'];
+}
+function useTitleFor(cat){
+  return cat==='Olive Oil' ? 'How to use it' : 'How to brew it';
+}
+function storyFor(sku){
+  return STORY[sku] || { origin:'South America', region:'', kicker:'Imported directly',
+    intro:'Real yerba, brought straight from South America by people who actually drink it.',
+    flavor:'Traditional', best:'Mate lovers', energy:'Steady lift' };
+}
 
 // ================== STATE ==================
 let PRODUCTS = [];
+let CURRENT_SKU = null;
 let CART = {};
 let TOKEN = localStorage.getItem('abuela_token') || null;
 let ME = null;
@@ -336,26 +482,71 @@ async function loadProducts(){
       const r = await fetch(API_URL+'/api/products');
       if (r.ok){
         const rows = await r.json();
-        PRODUCTS = rows.map(p=>({ ...p, icon:'🧉', bg:'#9FE1CB' }));
-        renderProducts(); return;
+        PRODUCTS = rows.map(p=>({ ...p, icon:p.category==='Olive Oil'?'🫒':'🧉', bg:'#9FE1CB' }));
+        renderCatTabs(); renderProducts(); return;
       }
     }catch(e){}
     $('products-status').textContent = 'Showing local catalog (API not reachable right now).';
   }
   PRODUCTS = FALLBACK_PRODUCTS;
-  renderProducts();
+  renderCatTabs(); renderProducts();
 }
+let ACTIVE_CAT = 'All';
+function categories(){
+  const cats = [...new Set(PRODUCTS.map(p=>p.category||'Groceries'))];
+  return ['All', ...cats];
+}
+function renderCatTabs(){
+  const cats = categories();
+  const labels = { 'All':'All', 'Yerba Mate':'🧉 Yerba Mate', 'Olive Oil':'🫒 Olive Oil' };
+  $('cat-tabs').innerHTML = cats.map(c=>{
+    const on = c===ACTIVE_CAT;
+    return `<button onclick="setCat('${c}')" style="border:none;cursor:pointer;font-size:14px;padding:8px 18px;border-radius:22px;
+      background:${on?'#0F6E56':'#FAEEDA'};color:${on?'#fff':'#4A1B0C'};">${labels[c]||c}</button>`;
+  }).join('');
+}
+function setCat(c){ ACTIVE_CAT = c; renderCatTabs(); renderProducts(); }
+
 function renderProducts(){
-  $('products-grid').innerHTML = PRODUCTS.map(p=>`
+  const list = ACTIVE_CAT==='All' ? PRODUCTS : PRODUCTS.filter(p=>(p.category||'Groceries')===ACTIVE_CAT);
+  $('products-grid').innerHTML = list.map(p=>`
     <div class="card">
-      <div class="img" style="background:${p.bg||'#9FE1CB'};">${p.icon||'🧉'}</div>
+      <div class="img" style="background:${p.bg||'#9FE1CB'};cursor:pointer;" onclick="openProduct('${p.sku}')">${p.icon||'🧉'}</div>
       <div class="body">
-        <h4>${p.title.replace(' - Yerba Mate','')}</h4>
+        <h4 style="cursor:pointer;" onclick="openProduct('${p.sku}')">${cleanName(p.title)}</h4>
         <div class="note">${p.size_label||''}</div>
         <div class="price">${money(p.price_cents)}</div>
-        <button class="addbtn" onclick="addToCart('${p.sku}')">Add to the box</button>
+        <button class="addbtn" onclick="openProduct('${p.sku}')">Meet this one</button>
       </div>
     </div>`).join('');
+}
+function cleanName(t){ return t.replace(' - Yerba Mate','').replace(' - Cold Pressed','').replace(' - Single Estate','').replace(' - Robust',''); }
+
+// ---- Abrir la página de producto (educar antes de vender) ----
+function openProduct(sku){
+  const p = PRODUCTS.find(x=>x.sku===sku);
+  if (!p) return;
+  CURRENT_SKU = sku;
+  const s = storyFor(sku);
+  const cat = p.category||'Groceries';
+  const name = cleanName(p.title);
+  $('pp-kicker').textContent = (s.kicker||'') + (s.region? ' · '+s.region : (s.origin? ' · '+s.origin : ''));
+  $('pp-title').textContent = name;
+  $('pp-intro').textContent = s.intro;
+  $('pp-flavor').textContent = s.flavor;
+  $('pp-origin').textContent = s.origin;
+  $('pp-best').textContent = s.best;
+  // pasos de uso según categoría
+  $('pp-usetitle').textContent = useTitleFor(cat);
+  const steps = useStepsFor(cat);
+  $('pp-usesteps').innerHTML = steps.map(([h,t])=>`<div class="col"><h3>${h}</h3><p>${t}</p></div>`).join('');
+  $('pp-buyname').textContent = name;
+  $('pp-size').textContent = p.size_label || '';
+  $('pp-price').textContent = money(p.price_cents);
+  $('pp-photo').style.background = p.bg || '#9FE1CB';
+  $('pp-photo').textContent = p.icon || '🧉';
+  $('pp-addbtn').onclick = ()=>{ addToCart(sku); };
+  show('product');
 }
 
 // ================== CART ==================
