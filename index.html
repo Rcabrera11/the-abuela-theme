@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Abuela — Yerba Mate, Honestly Priced</title>
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;1,400&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { font-family:'Inter',sans-serif; color:#4A1B0C; background:#FAEEDA; }
+  .serif { font-family:'Lora',serif; }
+  .announce { background:#EF9F27; color:#412402; text-align:center; padding:9px 16px; font-size:14px; }
+  header { background:#085041; padding:16px 5%; display:flex; align-items:center; justify-content:space-between; position:sticky; top:0; z-index:50; }
+  .logo { font-family:'Lora',serif; font-size:26px; color:#fff; text-decoration:none; }
+  nav a { color:#9FE1CB; text-decoration:none; font-size:15px; margin-left:24px; }
+  nav a:hover { color:#fff; }
+  .hero { background:#0F6E56; text-align:center; padding:90px 5%; }
+  .hero .kicker { color:#5DCAA5; letter-spacing:3px; text-transform:uppercase; font-size:13px; margin-bottom:16px; }
+  .hero h1 { font-family:'Lora',serif; font-size:clamp(32px,5vw,52px); color:#fff; line-height:1.15; margin-bottom:18px; }
+  .hero p { color:#9FE1CB; font-size:17px; max-width:560px; margin:0 auto 30px; line-height:1.7; }
+  .btn { display:inline-block; background:#EF9F27; color:#412402; font-weight:500; padding:14px 34px; border-radius:8px; text-decoration:none; font-size:16px; }
+  .btn:hover { background:#FAC775; }
+  section { padding:70px 5%; }
+  .section-title { font-family:'Lora',serif; font-size:32px; color:#085041; text-align:center; margin-bottom:12px; }
+  .section-sub { text-align:center; color:#712B13; font-size:15px; margin-bottom:44px; }
+  .cols3 { display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:32px; max-width:1000px; margin:0 auto; }
+  .col { text-align:center; }
+  .col h3 { font-family:'Lora',serif; font-size:20px; color:#085041; margin-bottom:10px; }
+  .col p { font-size:15px; line-height:1.7; color:#712B13; }
+  .white { background:#fff; }
+  .green-dark { background:#085041; }
+  .green-dark .section-title, .green-dark .col h3 { color:#fff; }
+  .green-dark .section-sub, .green-dark .col p, .green-dark p { color:#9FE1CB; }
+  .products { display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:20px; max-width:1050px; margin:0 auto; }
+  .card { background:#FAEEDA; border-radius:14px; overflow:hidden; transition:transform .2s; }
+  .card:hover { transform:translateY(-4px); }
+  .card .img { height:170px; display:flex; align-items:center; justify-content:center; font-size:44px; }
+  .card .body { padding:16px; text-align:center; }
+  .card h4 { font-size:16px; color:#4A1B0C; margin-bottom:4px; }
+  .card .note { font-size:13px; color:#712B13; margin-bottom:8px; }
+  .card .price { font-size:17px; font-weight:500; color:#0F6E56; }
+  .honesty { background:#FAEEDA; text-align:center; }
+  .honesty p, .ritual-text p { max-width:620px; margin:0 auto; font-size:16px; line-height:1.8; color:#4A1B0C; }
+  .ritual { display:grid; grid-template-columns:1fr 1fr; gap:0; }
+  .ritual .ph { background:#C0DD97; min-height:340px; display:flex; align-items:center; justify-content:center; color:#27500A; font-size:15px; }
+  .ritual-text { background:#fff; display:flex; flex-direction:column; justify-content:center; padding:50px; }
+  .ritual-text h2 { font-family:'Lora',serif; font-size:28px; color:#085041; margin-bottom:16px; }
+  .ritual-text p { margin:0; font-size:15px; }
+  footer { background:#04342C; text-align:center; padding:28px; }
+  footer p { color:#9FE1CB; font-family:'Lora',serif; font-size:15px; }
+  .page { display:none; }
+  .page.active { display:block; }
+  @media (max-width:760px){ .ritual { grid-template-columns:1fr; } nav a { margin-left:14px; font-size:13px; } }
+</style>
+</head>
+<body>
+
+<div class="announce">The kettle's always on — free shipping when you fill the box past $75 🧉</div>
+
+<header>
+  <a class="logo" href="#" onclick="show('home');return false;">The Abuela</a>
+  <nav>
+    <a href="#" onclick="show('home');return false;">Home</a>
+    <a href="#" onclick="show('about');return false;">About</a>
+    <a href="#" onclick="show('shipping');return false;">Shipping</a>
+  </nav>
+</header>
+
+<!-- ==================== HOME ==================== -->
+<div id="home" class="page active">
+
+  <div class="hero">
+    <div class="kicker">Straight from South America</div>
+    <h1>The mate your abuela<br>would've bought</h1>
+    <p>Real yerba, brought straight from Argentina and Uruguay by people who actually drink it. No middlemen markups. No mystery. Just good mate, honestly priced.</p>
+    <a class="btn" href="#products" onclick="show('home');document.getElementById('products').scrollIntoView();return false;">Shop the yerba</a>
+  </div>
+
+  <div class="ritual">
+    <div class="ph">[ PHOTO — hands preparing mate, warm light ]</div>
+    <div class="ritual-text">
+      <h2>A ritual, not a product</h2>
+      <p>Mate is passed hand to hand, cup to cup. It's the pause in the day, the reason to sit down together. We don't sell you a bag — we invite you into a hundred-year-old ritual.</p>
+    </div>
+  </div>
+
+  <section class="white">
+    <h2 class="section-title">Why The Abuela</h2>
+    <div class="cols3">
+      <div class="col"><h3>Straight from the source</h3><p>We import it ourselves. Fewer hands on the box means fresher yerba and a fairer price.</p></div>
+      <div class="col"><h3>Honestly priced</h3><p>No inflated sale prices. No games. You pay close to what it's worth.</p></div>
+      <div class="col"><h3>A little something extra</h3><p>Every box leaves with a small gift. Abuela never sends you off empty-handed.</p></div>
+    </div>
+  </section>
+
+  <section id="products" class="white" style="padding-top:0;">
+    <h2 class="section-title">Our selection</h2>
+    <p class="section-sub">Each one tasted, chosen, and imported by us</p>
+    <div class="products">
+      <div class="card"><div class="img" style="background:#9FE1CB;">🧉</div><div class="body"><h4>Cruz de Malta</h4><div class="note">Smooth &amp; mild · 500g</div><div class="price">$9.90</div></div></div>
+      <div class="card"><div class="img" style="background:#C0DD97;">🌿</div><div class="body"><h4>Piporé Tradicional</h4><div class="note">Bold &amp; robust · 1kg</div><div class="price">$16.56</div></div></div>
+      <div class="card"><div class="img" style="background:#FAC775;">🍃</div><div class="body"><h4>Playadito Suave</h4><div class="note">Balanced classic · 1kg</div><div class="price">$18.00</div></div></div>
+      <div class="card"><div class="img" style="background:#F5C4B3;">🔥</div><div class="body"><h4>Rosamonte 55 Aniv.</h4><div class="note">Traditional · 1kg</div><div class="price">$13.80</div></div></div>
+      <div class="card"><div class="img" style="background:#9FE1CB;">⚡</div><div class="body"><h4>Taragüí 4Flex</h4><div class="note">Strong &amp; bold · 1kg</div><div class="price">$16.98</div></div></div>
+      <div class="card"><div class="img" style="background:#C0DD97;">🏔️</div><div class="body"><h4>La Merced</h4><div class="note">Campo &amp; Monte</div><div class="price">$17.40</div></div></div>
+      <div class="card"><div class="img" style="background:#FAC775;">🌱</div><div class="body"><h4>Amanda Tradicional</h4><div class="note">Robust classic · 1kg</div><div class="price">$14.22</div></div></div>
+      <div class="card"><div class="img" style="background:#F5C4B3;">⭐</div><div class="body"><h4>Taragüí Azul</h4><div class="note">Premium blend</div><div class="price">$22.56</div></div></div>
+    </div>
+  </section>
+
+  <section class="green-dark" style="text-align:center;">
+    <h2 class="section-title">Natural energy, no crash</h2>
+    <p style="max-width:560px;margin:0 auto;font-size:16px;line-height:1.8;">The focus of coffee without the jitters. Antioxidants, vitamins, and a clean lift that lasts all day.</p>
+  </section>
+
+  <section class="honesty">
+    <h2 class="section-title">Let's be honest about "free shipping"</h2>
+    <p>Nobody ships for free. When a store says "free shipping," they've baked the cost into the price. We show you the real cost up front — one box, one shipping fee, no matter how much yerba you pack in. Fill it to the top; the shipping stays the same. No lie, no fine print.</p>
+  </section>
+
+  <section class="green-dark" style="text-align:center;">
+    <h2 class="section-title">Come for the yerba. Stay because we didn't lie to you.</h2>
+    <p style="max-width:520px;margin:0 auto 26px;font-size:15px;line-height:1.7;">A small operation run by people who drink this stuff every single day. Pour a mate. Taste the difference.</p>
+    <a class="btn" href="#" onclick="show('home');document.getElementById('products').scrollIntoView();return false;">Start with a bag</a>
+  </section>
+
+</div>
+
+<!-- ==================== ABOUT ==================== -->
+<div id="about" class="page">
+  <section class="white" style="text-align:center;">
+    <h2 class="section-title" style="font-size:40px;">Who's the Abuela?</h2>
+    <p style="max-width:640px;margin:0 auto;font-size:16px;line-height:1.9;">Every family has one. The abuela who always has the kettle on. Who slips a little money into your pocket when you leave. Who feeds you before you even sit down.<br><br>The Abuela isn't one person — she's that feeling. The one behind every cup of mate shared on a porch, in a kitchen, between friends who've got time for each other.</p>
+  </section>
+  <section class="honesty" style="text-align:center;">
+    <h2 class="section-title">We cut the chain</h2>
+    <p>Getting real, fresh South American yerba in the US was either overpriced, stale, or both. So we import directly — Argentina, Uruguay, and the corners of South America where mate is a way of life, not a trend. Fewer middlemen means fresher yerba and a fairer price.</p>
+  </section>
+  <section class="white">
+    <h2 class="section-title">What nobody else can copy</h2>
+    <div class="cols3">
+      <div class="col"><h3>We drink this every day</h3><p>We're not a corporation that discovered a trend. Good mate is on our own table every morning.</p></div>
+      <div class="col"><h3>We bring it ourselves</h3><p>Direct import, origin to your door. No distributors marking it up, no mystery about where it's been.</p></div>
+      <div class="col"><h3>We treat you like family</h3><p>The gift in the box, the honest shipping, the note with your order. Family isn't a marketing word here.</p></div>
+    </div>
+  </section>
+  <section class="green-dark" style="text-align:center;">
+    <h2 class="section-title">The gift in the box</h2>
+    <p style="max-width:560px;margin:0 auto;font-size:15px;line-height:1.8;">There's always a little something extra tucked in with your order. Because no abuela worth her salt ever sent someone home empty-handed. It's not a marketing gimmick. It's just manners.<br><br><em>Welcome to the family. The kettle's on.</em></p>
+  </section>
+</div>
+
+<!-- ==================== SHIPPING ==================== -->
+<div id="shipping" class="page">
+  <section class="white" style="text-align:center;">
+    <h2 class="section-title" style="font-size:38px;">Shipping, explained honestly</h2>
+    <p style="color:#712B13;font-size:15px;">Most stores hide how shipping works. We'd rather just tell you.</p>
+  </section>
+  <section class="honesty">
+    <div class="cols3">
+      <div class="col"><h3>One box, one fee</h3><p>You pay to ship the box — not each bag inside it. Order one or fill it up, the cost stays the same.</p></div>
+      <div class="col"><h3>We charge by zone</h3><p>The cost depends on how far your box travels. You'll see the exact amount before you pay.</p></div>
+      <div class="col"><h3>Cross the line, we cover it</h3><p>Spend enough in one order and shipping's on us. Our thanks for stocking up.</p></div>
+    </div>
+  </section>
+  <section class="green-dark" style="text-align:center;">
+    <h2 class="section-title">No free shipping games</h2>
+    <p style="max-width:560px;margin:0 auto;font-size:15px;line-height:1.8;">We'll never quietly raise a product's price and call the shipping "free." What you see is what it costs. That's the deal.</p>
+  </section>
+</div>
+
+<footer><p>The Abuela — the kettle's always on 🧉</p></footer>
+
+<script>
+function show(id){
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  window.scrollTo(0,0);
+}
+</script>
+
+</body>
+</html>
