@@ -8,49 +8,71 @@
 <style>
   * { margin:0; padding:0; box-sizing:border-box; }
   body { font-family:'Inter',sans-serif; color:#4A1B0C; background:#FAEEDA; }
-  .serif { font-family:'Lora',serif; }
   .announce { background:#EF9F27; color:#412402; text-align:center; padding:9px 16px; font-size:14px; }
-  header { background:#085041; padding:16px 5%; display:flex; align-items:center; justify-content:space-between; position:sticky; top:0; z-index:50; }
-  .logo { font-family:'Lora',serif; font-size:26px; color:#fff; text-decoration:none; }
-  nav a { color:#9FE1CB; text-decoration:none; font-size:15px; margin-left:24px; }
+  header { background:#085041; padding:14px 5%; display:flex; align-items:center; justify-content:space-between; position:sticky; top:0; z-index:50; flex-wrap:wrap; gap:8px; }
+  .logo { font-family:'Lora',serif; font-size:24px; color:#fff; text-decoration:none; cursor:pointer; }
+  nav { display:flex; align-items:center; gap:18px; flex-wrap:wrap; }
+  nav a { color:#9FE1CB; text-decoration:none; font-size:14px; cursor:pointer; }
   nav a:hover { color:#fff; }
-  .hero { background:#0F6E56; text-align:center; padding:90px 5%; }
-  .hero .kicker { color:#5DCAA5; letter-spacing:3px; text-transform:uppercase; font-size:13px; margin-bottom:16px; }
-  .hero h1 { font-family:'Lora',serif; font-size:clamp(32px,5vw,52px); color:#fff; line-height:1.15; margin-bottom:18px; }
-  .hero p { color:#9FE1CB; font-size:17px; max-width:560px; margin:0 auto 30px; line-height:1.7; }
-  .btn { display:inline-block; background:#EF9F27; color:#412402; font-weight:500; padding:14px 34px; border-radius:8px; text-decoration:none; font-size:16px; }
+  .cartbtn { background:#EF9F27; color:#412402; padding:7px 14px; border-radius:8px; font-size:14px; cursor:pointer; border:none; font-weight:500; }
+  .hero { background:#0F6E56; text-align:center; padding:70px 5%; }
+  .hero .kicker { color:#5DCAA5; letter-spacing:3px; text-transform:uppercase; font-size:12px; margin-bottom:14px; }
+  .hero h1 { font-family:'Lora',serif; font-size:clamp(30px,5vw,48px); color:#fff; line-height:1.15; margin-bottom:16px; }
+  .hero p { color:#9FE1CB; font-size:16px; max-width:560px; margin:0 auto 26px; line-height:1.7; }
+  .btn { display:inline-block; background:#EF9F27; color:#412402; font-weight:500; padding:12px 30px; border-radius:8px; text-decoration:none; font-size:15px; border:none; cursor:pointer; }
   .btn:hover { background:#FAC775; }
-  section { padding:70px 5%; }
-  .section-title { font-family:'Lora',serif; font-size:32px; color:#085041; text-align:center; margin-bottom:12px; }
-  .section-sub { text-align:center; color:#712B13; font-size:15px; margin-bottom:44px; }
-  .cols3 { display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:32px; max-width:1000px; margin:0 auto; }
+  section { padding:56px 5%; }
+  .section-title { font-family:'Lora',serif; font-size:29px; color:#085041; text-align:center; margin-bottom:10px; }
+  .section-sub { text-align:center; color:#712B13; font-size:14px; margin-bottom:36px; }
+  .cols3 { display:grid; grid-template-columns:repeat(auto-fit,minmax(230px,1fr)); gap:28px; max-width:980px; margin:0 auto; }
   .col { text-align:center; }
-  .col h3 { font-family:'Lora',serif; font-size:20px; color:#085041; margin-bottom:10px; }
-  .col p { font-size:15px; line-height:1.7; color:#712B13; }
+  .col h3 { font-family:'Lora',serif; font-size:19px; color:#085041; margin-bottom:8px; }
+  .col p { font-size:14px; line-height:1.7; color:#712B13; }
   .white { background:#fff; }
   .green-dark { background:#085041; }
   .green-dark .section-title, .green-dark .col h3 { color:#fff; }
   .green-dark .section-sub, .green-dark .col p, .green-dark p { color:#9FE1CB; }
-  .products { display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:20px; max-width:1050px; margin:0 auto; }
-  .card { background:#FAEEDA; border-radius:14px; overflow:hidden; transition:transform .2s; }
-  .card:hover { transform:translateY(-4px); }
-  .card .img { height:170px; display:flex; align-items:center; justify-content:center; font-size:44px; }
-  .card .body { padding:16px; text-align:center; }
-  .card h4 { font-size:16px; color:#4A1B0C; margin-bottom:4px; }
-  .card .note { font-size:13px; color:#712B13; margin-bottom:8px; }
-  .card .price { font-size:17px; font-weight:500; color:#0F6E56; }
-  .honesty { background:#FAEEDA; text-align:center; }
-  .honesty p, .ritual-text p { max-width:620px; margin:0 auto; font-size:16px; line-height:1.8; color:#4A1B0C; }
-  .ritual { display:grid; grid-template-columns:1fr 1fr; gap:0; }
-  .ritual .ph { background:#C0DD97; min-height:340px; display:flex; align-items:center; justify-content:center; color:#27500A; font-size:15px; }
-  .ritual-text { background:#fff; display:flex; flex-direction:column; justify-content:center; padding:50px; }
-  .ritual-text h2 { font-family:'Lora',serif; font-size:28px; color:#085041; margin-bottom:16px; }
-  .ritual-text p { margin:0; font-size:15px; }
-  footer { background:#04342C; text-align:center; padding:28px; }
-  footer p { color:#9FE1CB; font-family:'Lora',serif; font-size:15px; }
-  .page { display:none; }
-  .page.active { display:block; }
-  @media (max-width:760px){ .ritual { grid-template-columns:1fr; } nav a { margin-left:14px; font-size:13px; } }
+  .products { display:grid; grid-template-columns:repeat(auto-fit,minmax(190px,1fr)); gap:18px; max-width:1050px; margin:0 auto; }
+  .card { background:#FAEEDA; border-radius:14px; overflow:hidden; }
+  .card .img { height:130px; display:flex; align-items:center; justify-content:center; font-size:38px; }
+  .card .body { padding:14px; text-align:center; }
+  .card h4 { font-size:15px; color:#4A1B0C; margin-bottom:2px; }
+  .card .note { font-size:12px; color:#712B13; margin-bottom:6px; }
+  .card .price { font-size:16px; font-weight:500; color:#0F6E56; margin-bottom:8px; }
+  .card .addbtn { background:#0F6E56; color:#fff; border:none; padding:8px 16px; border-radius:8px; font-size:13px; cursor:pointer; width:100%; }
+  .card .addbtn:hover { background:#085041; }
+  .ritual { display:grid; grid-template-columns:1fr 1fr; }
+  .ritual .ph { background:#C0DD97; min-height:300px; display:flex; align-items:center; justify-content:center; color:#27500A; font-size:14px; }
+  .ritual-text { background:#fff; display:flex; flex-direction:column; justify-content:center; padding:44px; }
+  .ritual-text h2 { font-family:'Lora',serif; font-size:26px; color:#085041; margin-bottom:14px; }
+  .ritual-text p { font-size:14px; line-height:1.8; }
+  footer { background:#04342C; text-align:center; padding:24px; }
+  footer p { color:#9FE1CB; font-family:'Lora',serif; font-size:14px; }
+  .page { display:none; } .page.active { display:block; }
+  .honesty-text { max-width:620px; margin:0 auto; font-size:15px; line-height:1.8; color:#4A1B0C; text-align:center; }
+  .panel { max-width:640px; margin:0 auto; background:#fff; border-radius:14px; padding:28px; }
+  .panel h2 { font-family:'Lora',serif; font-size:24px; color:#085041; margin-bottom:16px; }
+  .row { display:flex; justify-content:space-between; align-items:center; padding:10px 0; border-bottom:1px solid #F0E2C8; font-size:14px; }
+  .row .qty { display:flex; gap:8px; align-items:center; }
+  .qty button { width:26px; height:26px; border:1px solid #0F6E56; background:#fff; color:#0F6E56; border-radius:6px; cursor:pointer; }
+  input, select { width:100%; padding:11px; border:1px solid #D9C49A; border-radius:8px; font-size:14px; font-family:'Inter',sans-serif; margin-bottom:12px; background:#FFFDF8; }
+  label { font-size:12px; color:#4A1B0C; display:block; margin-bottom:4px; }
+  .optional-tag { color:#712B13; font-weight:400; }
+  .savings { background:#E1F5EE; border-radius:10px; padding:14px 16px; margin:16px 0; font-size:13px; color:#04342C; line-height:1.7; }
+  .savings b { color:#085041; }
+  .shipbar-wrap { background:#FAEEDA; border-radius:10px; padding:12px 16px; margin:12px 0; font-size:13px; }
+  .shipbar { height:8px; background:#F0DDBB; border-radius:4px; margin-top:8px; overflow:hidden; }
+  .shipbar div { height:100%; background:#0F6E56; }
+  .muted { font-size:12px; color:#712B13; }
+  .msg { padding:12px 14px; border-radius:8px; margin-bottom:14px; font-size:14px; display:none; }
+  .msg.err { background:#FBE0DC; color:#712B13; display:block; }
+  .msg.ok { background:#E1F5EE; color:#04342C; display:block; }
+  .petrow { display:grid; grid-template-columns:2fr 1fr 1fr; gap:8px; }
+  .linkish { color:#0F6E56; cursor:pointer; text-decoration:underline; font-size:13px; }
+  .orderbox { background:#FAEEDA; border-radius:10px; padding:14px 16px; margin-bottom:12px; font-size:13px; line-height:1.7; }
+  .orderbox .onum { font-weight:500; color:#085041; }
+  .badge { display:inline-block; background:#EF9F27; color:#412402; font-size:11px; padding:2px 10px; border-radius:12px; }
+  @media (max-width:760px){ .ritual { grid-template-columns:1fr; } }
 </style>
 </head>
 <body>
@@ -58,22 +80,24 @@
 <div class="announce">The kettle's always on — free shipping when you fill the box past $75 🧉</div>
 
 <header>
-  <a class="logo" href="#" onclick="show('home');return false;">The Abuela</a>
+  <a class="logo" onclick="show('home')">The Abuela</a>
   <nav>
-    <a href="#" onclick="show('home');return false;">Home</a>
-    <a href="#" onclick="show('about');return false;">About</a>
-    <a href="#" onclick="show('shipping');return false;">Shipping</a>
+    <a onclick="show('home')">Home</a>
+    <a onclick="show('about')">About</a>
+    <a onclick="show('shipping')">Shipping</a>
+    <a id="nav-auth" onclick="show('auth')">Join the family</a>
+    <a id="nav-account" onclick="show('account')" style="display:none;">My account</a>
+    <button class="cartbtn" onclick="show('cart')">🧺 Box (<span id="cart-count">0</span>)</button>
   </nav>
 </header>
 
-<!-- ==================== HOME ==================== -->
+<!-- ============ HOME ============ -->
 <div id="home" class="page active">
-
   <div class="hero">
     <div class="kicker">Straight from South America</div>
     <h1>The mate your abuela<br>would've bought</h1>
-    <p>Real yerba, brought straight from Argentina and Uruguay by people who actually drink it. No middlemen markups. No mystery. Just good mate, honestly priced.</p>
-    <a class="btn" href="#products" onclick="show('home');document.getElementById('products').scrollIntoView();return false;">Shop the yerba</a>
+    <p>Real yerba, brought straight from Argentina and Uruguay by people who actually drink it. Priced near cost. You pay the real shipping — and still come out ahead.</p>
+    <button class="btn" onclick="show('home');document.getElementById('products-sec').scrollIntoView();">Shop the yerba</button>
   </div>
 
   <div class="ritual">
@@ -87,54 +111,45 @@
   <section class="white">
     <h2 class="section-title">Why The Abuela</h2>
     <div class="cols3">
-      <div class="col"><h3>Straight from the source</h3><p>We import it ourselves. Fewer hands on the box means fresher yerba and a fairer price.</p></div>
-      <div class="col"><h3>Honestly priced</h3><p>No inflated sale prices. No games. You pay close to what it's worth.</p></div>
+      <div class="col"><h3>Priced near cost</h3><p>Marketplaces bury the shipping inside an inflated price. We don't. Our price sits close to what the yerba actually costs to bring here.</p></div>
+      <div class="col"><h3>You see the real shipping</h3><p>One box, one shipping fee, shown up front. Fill the box — the shipping stays the same. Over $75, we cover it.</p></div>
       <div class="col"><h3>A little something extra</h3><p>Every box leaves with a small gift. Abuela never sends you off empty-handed.</p></div>
     </div>
   </section>
 
-  <section id="products" class="white" style="padding-top:0;">
+  <section id="products-sec" class="white" style="padding-top:0;">
     <h2 class="section-title">Our selection</h2>
     <p class="section-sub">Each one tasted, chosen, and imported by us</p>
-    <div class="products">
-      <div class="card"><div class="img" style="background:#9FE1CB;">🧉</div><div class="body"><h4>Cruz de Malta</h4><div class="note">Smooth &amp; mild · 500g</div><div class="price">$9.90</div></div></div>
-      <div class="card"><div class="img" style="background:#C0DD97;">🌿</div><div class="body"><h4>Piporé Tradicional</h4><div class="note">Bold &amp; robust · 1kg</div><div class="price">$16.56</div></div></div>
-      <div class="card"><div class="img" style="background:#FAC775;">🍃</div><div class="body"><h4>Playadito Suave</h4><div class="note">Balanced classic · 1kg</div><div class="price">$18.00</div></div></div>
-      <div class="card"><div class="img" style="background:#F5C4B3;">🔥</div><div class="body"><h4>Rosamonte 55 Aniv.</h4><div class="note">Traditional · 1kg</div><div class="price">$13.80</div></div></div>
-      <div class="card"><div class="img" style="background:#9FE1CB;">⚡</div><div class="body"><h4>Taragüí 4Flex</h4><div class="note">Strong &amp; bold · 1kg</div><div class="price">$16.98</div></div></div>
-      <div class="card"><div class="img" style="background:#C0DD97;">🏔️</div><div class="body"><h4>La Merced</h4><div class="note">Campo &amp; Monte</div><div class="price">$17.40</div></div></div>
-      <div class="card"><div class="img" style="background:#FAC775;">🌱</div><div class="body"><h4>Amanda Tradicional</h4><div class="note">Robust classic · 1kg</div><div class="price">$14.22</div></div></div>
-      <div class="card"><div class="img" style="background:#F5C4B3;">⭐</div><div class="body"><h4>Taragüí Azul</h4><div class="note">Premium blend</div><div class="price">$22.56</div></div></div>
-    </div>
+    <div class="products" id="products-grid"></div>
+    <p class="muted" id="products-status" style="text-align:center;margin-top:16px;"></p>
   </section>
 
   <section class="green-dark" style="text-align:center;">
     <h2 class="section-title">Natural energy, no crash</h2>
-    <p style="max-width:560px;margin:0 auto;font-size:16px;line-height:1.8;">The focus of coffee without the jitters. Antioxidants, vitamins, and a clean lift that lasts all day.</p>
+    <p style="max-width:540px;margin:0 auto;font-size:15px;line-height:1.8;">The focus of coffee without the jitters. Antioxidants, vitamins, and a clean lift that lasts all day.</p>
   </section>
 
-  <section class="honesty">
+  <section>
     <h2 class="section-title">Let's be honest about "free shipping"</h2>
-    <p>Nobody ships for free. When a store says "free shipping," they've baked the cost into the price. We show you the real cost up front — one box, one shipping fee, no matter how much yerba you pack in. Fill it to the top; the shipping stays the same. No lie, no fine print.</p>
+    <p class="honesty-text">Nobody ships for free. When a marketplace says "free shipping," they've baked it into the price — that's why a bag that lands here for a few dollars sells for $15–18 online. We flipped the math: price near cost, shipping shown honestly. Fill one box, pay one shipping fee, and do the numbers yourself. That's the whole secret.</p>
   </section>
 
   <section class="green-dark" style="text-align:center;">
     <h2 class="section-title">Come for the yerba. Stay because we didn't lie to you.</h2>
-    <p style="max-width:520px;margin:0 auto 26px;font-size:15px;line-height:1.7;">A small operation run by people who drink this stuff every single day. Pour a mate. Taste the difference.</p>
-    <a class="btn" href="#" onclick="show('home');document.getElementById('products').scrollIntoView();return false;">Start with a bag</a>
+    <p style="max-width:500px;margin:0 auto 22px;font-size:14px;line-height:1.7;">A small operation run by people who drink this stuff every single day.</p>
+    <button class="btn" onclick="show('home');document.getElementById('products-sec').scrollIntoView();">Start with a bag</button>
   </section>
-
 </div>
 
-<!-- ==================== ABOUT ==================== -->
+<!-- ============ ABOUT ============ -->
 <div id="about" class="page">
   <section class="white" style="text-align:center;">
-    <h2 class="section-title" style="font-size:40px;">Who's the Abuela?</h2>
-    <p style="max-width:640px;margin:0 auto;font-size:16px;line-height:1.9;">Every family has one. The abuela who always has the kettle on. Who slips a little money into your pocket when you leave. Who feeds you before you even sit down.<br><br>The Abuela isn't one person — she's that feeling. The one behind every cup of mate shared on a porch, in a kitchen, between friends who've got time for each other.</p>
+    <h2 class="section-title" style="font-size:36px;">Who's the Abuela?</h2>
+    <p class="honesty-text">Every family has one. The abuela who always has the kettle on. Who slips a little money into your pocket when you leave. Who feeds you before you even sit down.<br><br>The Abuela isn't one person — she's that feeling. The one behind every cup of mate shared on a porch, in a kitchen, between friends who've got time for each other.</p>
   </section>
-  <section class="honesty" style="text-align:center;">
+  <section style="text-align:center;">
     <h2 class="section-title">We cut the chain</h2>
-    <p>Getting real, fresh South American yerba in the US was either overpriced, stale, or both. So we import directly — Argentina, Uruguay, and the corners of South America where mate is a way of life, not a trend. Fewer middlemen means fresher yerba and a fairer price.</p>
+    <p class="honesty-text">Getting real, fresh South American yerba in the US was either overpriced, stale, or both. So we import directly and price near cost. Fewer middlemen, fresher yerba, honest math.</p>
   </section>
   <section class="white">
     <h2 class="section-title">What nobody else can copy</h2>
@@ -146,37 +161,384 @@
   </section>
   <section class="green-dark" style="text-align:center;">
     <h2 class="section-title">The gift in the box</h2>
-    <p style="max-width:560px;margin:0 auto;font-size:15px;line-height:1.8;">There's always a little something extra tucked in with your order. Because no abuela worth her salt ever sent someone home empty-handed. It's not a marketing gimmick. It's just manners.<br><br><em>Welcome to the family. The kettle's on.</em></p>
+    <p style="max-width:540px;margin:0 auto;font-size:14px;line-height:1.8;">There's always a little something extra tucked in with your order. Because no abuela worth her salt ever sent someone home empty-handed.<br><br><em>Welcome to the family. The kettle's on.</em></p>
   </section>
 </div>
 
-<!-- ==================== SHIPPING ==================== -->
+<!-- ============ SHIPPING ============ -->
 <div id="shipping" class="page">
   <section class="white" style="text-align:center;">
-    <h2 class="section-title" style="font-size:38px;">Shipping, explained honestly</h2>
-    <p style="color:#712B13;font-size:15px;">Most stores hide how shipping works. We'd rather just tell you.</p>
+    <h2 class="section-title" style="font-size:34px;">Shipping, explained honestly</h2>
+    <p class="section-sub">Most stores hide how shipping works. We'd rather just tell you.</p>
   </section>
-  <section class="honesty">
+  <section>
     <div class="cols3">
-      <div class="col"><h3>One box, one fee</h3><p>You pay to ship the box — not each bag inside it. Order one or fill it up, the cost stays the same.</p></div>
-      <div class="col"><h3>We charge by zone</h3><p>The cost depends on how far your box travels. You'll see the exact amount before you pay.</p></div>
-      <div class="col"><h3>Cross the line, we cover it</h3><p>Spend enough in one order and shipping's on us. Our thanks for stocking up.</p></div>
+      <div class="col"><h3>One box, one fee</h3><p>$8.99 flat. You pay to ship the box — not each bag inside it. Order one or fill it up, the fee stays the same.</p></div>
+      <div class="col"><h3>The math works for you</h3><p>Because our prices sit near cost, even after real shipping you take home more yerba per dollar than the "free shipping" price ever gave you.</p></div>
+      <div class="col"><h3>Over $75, we cover it</h3><p>Fill the box past $75 and shipping's on us. Our thanks for stocking up.</p></div>
     </div>
   </section>
   <section class="green-dark" style="text-align:center;">
     <h2 class="section-title">No free shipping games</h2>
-    <p style="max-width:560px;margin:0 auto;font-size:15px;line-height:1.8;">We'll never quietly raise a product's price and call the shipping "free." What you see is what it costs. That's the deal.</p>
+    <p style="max-width:540px;margin:0 auto;font-size:14px;line-height:1.8;">We'll never quietly raise a product's price and call the shipping "free." What you see is what it costs. That's the deal.</p>
+  </section>
+</div>
+
+<!-- ============ CART / BOX ============ -->
+<div id="cart" class="page">
+  <section>
+    <div class="panel">
+      <h2>Your box 🧺</h2>
+      <div class="msg" id="cart-msg"></div>
+      <div id="cart-items"></div>
+      <div class="shipbar-wrap" id="shipbar-wrap" style="display:none;">
+        <span id="shipbar-text"></span>
+        <div class="shipbar"><div id="shipbar-fill" style="width:0%"></div></div>
+      </div>
+      <div class="savings" id="savings-box" style="display:none;"></div>
+      <div id="cart-totals" style="font-size:15px; margin:14px 0;"></div>
+      <div id="checkout-form" style="display:none;">
+        <h2 style="font-size:19px;">Where does the box go?</h2>
+        <label>Name</label><input id="co-name" placeholder="Full name">
+        <label>Email</label><input id="co-email" type="email" placeholder="you@email.com">
+        <label>Address</label><input id="co-addr1" placeholder="Street address">
+        <input id="co-addr2" placeholder="Apt, suite (optional)">
+        <div style="display:grid;grid-template-columns:2fr 1fr 1fr;gap:8px;">
+          <div><label>City</label><input id="co-city"></div>
+          <div><label>State</label><input id="co-state" placeholder="PA"></div>
+          <div><label>ZIP</label><input id="co-zip"></div>
+        </div>
+        <button class="btn" style="width:100%;" onclick="placeOrder()">Place order</button>
+        <p class="muted" style="margin-top:10px;text-align:center;">No payment taken today — your order is recorded and we'll send the payment link personally. Abuela does business the old way first. 🧉</p>
+      </div>
+      <div id="order-done" style="display:none;text-align:center;">
+        <h2>Order received 🧉</h2>
+        <p style="font-size:15px;line-height:1.7;">Your order <b id="done-number"></b> is in Abuela's book.<br>We'll email you the payment link shortly.<br><span class="muted">And yes — there's a little something extra coming in your box.</span></p>
+        <button class="btn" style="margin-top:16px;" onclick="show('home')">Back to the yerba</button>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- ============ AUTH ============ -->
+<div id="auth" class="page">
+  <section>
+    <div class="panel">
+      <div class="msg" id="auth-msg"></div>
+      <div id="login-box">
+        <h2>Welcome back</h2>
+        <label>Email</label><input id="li-email" type="email">
+        <label>Password</label><input id="li-pass" type="password">
+        <button class="btn" style="width:100%;" onclick="doLogin()">Log in</button>
+        <p style="text-align:center;margin-top:14px;font-size:14px;">New here? <span class="linkish" onclick="toggleAuth(true)">Pull up a chair — join the family</span></p>
+      </div>
+      <div id="register-box" style="display:none;">
+        <h2>Join the family</h2>
+        <p class="muted" style="margin-bottom:16px;">Abuela likes to know who she's pouring for. Only name, email and password are required — everything else, share if you'd like.</p>
+        <label>Your name *</label><input id="rg-name" placeholder="What should Abuela call you?">
+        <label>Email *</label><input id="rg-email" type="email">
+        <label>Password * <span class="optional-tag">(8+ characters)</span></label><input id="rg-pass" type="password">
+        <label>Phone <span class="optional-tag">— order updates, never spam</span></label><input id="rg-phone">
+        <label>Your birthday <span class="optional-tag">— month &amp; day, for a little surprise</span></label>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;">
+          <select id="rg-bmonth"><option value="">Month</option></select>
+          <select id="rg-bday"><option value="">Day</option></select>
+        </div>
+        <label>Who's in your mate circle? <span class="optional-tag">— optional</span></label>
+        <input id="rg-circle" placeholder="Partner, kids, the whole family...">
+        <label>The furry family <span class="optional-tag">— pets get birthday surprises too 🐾</span></label>
+        <div class="petrow">
+          <input id="rg-petname" placeholder="Pet's name">
+          <select id="rg-petmonth"><option value="">Month</option></select>
+          <select id="rg-petday"><option value="">Day</option></select>
+        </div>
+        <label style="margin-top:4px;">Dates worth celebrating <span class="optional-tag">— so Abuela can send a little something</span></label>
+        <div style="display:flex;gap:16px;flex-wrap:wrap;font-size:13px;margin-bottom:12px;">
+          <label style="display:flex;gap:6px;align-items:center;"><input type="checkbox" id="rg-mday" style="width:auto;margin:0;"> Mother's Day</label>
+          <label style="display:flex;gap:6px;align-items:center;"><input type="checkbox" id="rg-fday" style="width:auto;margin:0;"> Father's Day</label>
+          <label style="display:flex;gap:6px;align-items:center;"><input type="checkbox" id="rg-xmas" style="width:auto;margin:0;"> Christmas</label>
+        </div>
+        <label style="display:flex;gap:8px;align-items:flex-start;font-size:13px;margin-bottom:16px;"><input type="checkbox" id="rg-optin" style="width:auto;margin:2px 0 0;"> <span>Send me a note when something good comes in. No daily nagging — Abuela respects your time.</span></label>
+        <button class="btn" style="width:100%;" onclick="doRegister()">Pull up a chair</button>
+        <p class="muted" style="text-align:center;margin-top:10px;">Your information stays in the family. We never sell it.</p>
+        <p style="text-align:center;margin-top:12px;font-size:14px;">Already family? <span class="linkish" onclick="toggleAuth(false)">Log in</span></p>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- ============ ACCOUNT ============ -->
+<div id="account" class="page">
+  <section>
+    <div class="panel">
+      <h2 id="acct-hello">My account</h2>
+      <div class="msg" id="acct-msg"></div>
+      <h2 style="font-size:18px;">My orders</h2>
+      <div id="acct-orders"><p class="muted">Loading…</p></div>
+      <p style="margin-top:20px;"><span class="linkish" onclick="doLogout()">Log out</span></p>
+    </div>
   </section>
 </div>
 
 <footer><p>The Abuela — the kettle's always on 🧉</p></footer>
 
 <script>
+// ================== CONFIG ==================
+// PEGA AQUI tu URL de Railway (sin barra final), por ejemplo:
+// const API_URL = "https://abuela-api-production-xxxx.up.railway.app";
+const API_URL = "";  // vacio = modo preview (catalogo local, sin login/ordenes)
+
+const FREE_SHIPPING_CENTS = 7500;
+const FLAT_SHIPPING_CENTS = 899;
+// Comparador de ahorro: referencia de marketplace (aprox) = nuestro precio x 1.65
+// Basado en el analisis: yerba de ~$3 landed se vende $15-18 con shipping oculto.
+const MARKET_MULTIPLIER = 1.65;
+
+const FALLBACK_PRODUCTS = [
+  {sku:'CDM-500', title:'Cruz de Malta - Yerba Mate', size_label:'500g', price_cents:990, icon:'🧉', bg:'#9FE1CB'},
+  {sku:'PIP-1000', title:'Pipore Tradicional - Yerba Mate', size_label:'1kg', price_cents:1656, icon:'🌿', bg:'#C0DD97'},
+  {sku:'PLA-500', title:'Playadito Suave - Yerba Mate', size_label:'500g', price_cents:960, icon:'🍃', bg:'#FAC775'},
+  {sku:'PLA-1000', title:'Playadito Suave - Yerba Mate', size_label:'1kg', price_cents:1800, icon:'🍃', bg:'#FAC775'},
+  {sku:'ROS-1000', title:'Rosamonte 55 Aniversario - Yerba Mate', size_label:'1kg', price_cents:1380, icon:'🔥', bg:'#F5C4B3'},
+  {sku:'TAR-1000', title:'Taragui 4Flex - Yerba Mate', size_label:'1kg', price_cents:1698, icon:'⚡', bg:'#9FE1CB'},
+  {sku:'LM-CM', title:'La Merced Campo & Monte - Yerba Mate', size_label:'', price_cents:1740, icon:'🏔️', bg:'#C0DD97'},
+  {sku:'TAR-AZ', title:'Taragui 4Flex O.C. Azul - Yerba Mate', size_label:'', price_cents:2256, icon:'⭐', bg:'#F5C4B3'},
+  {sku:'AMATR-1000', title:'Amanda Tradicional Nueva - Yerba Mate', size_label:'1kg', price_cents:1422, icon:'🌱', bg:'#FAC775'},
+  {sku:'ROS-TR', title:'Rosamonte Tradicional 55 Aniv. - Yerba Mate', size_label:'', price_cents:720, icon:'🔥', bg:'#F5C4B3'},
+  {sku:'AMA4-500', title:'Amanda 4 - Yerba Mate', size_label:'500g', price_cents:720, icon:'🌱', bg:'#9FE1CB'},
+  {sku:'ROS-SU', title:'Rosamonte Suave 55 Aniv. - Yerba Mate', size_label:'', price_cents:1560, icon:'🔥', bg:'#F5C4B3'},
+];
+
+// ================== STATE ==================
+let PRODUCTS = [];
+let CART = {};
+let TOKEN = localStorage.getItem('abuela_token') || null;
+let ME = null;
+
+const $ = id => document.getElementById(id);
+const money = c => '$' + (c/100).toFixed(2);
+const apiOn = () => API_URL && API_URL.startsWith('http');
+
+// ================== NAV ==================
 function show(id){
   document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
-  document.getElementById(id).classList.add('active');
+  $(id).classList.add('active');
   window.scrollTo(0,0);
+  if (id==='cart') renderCart();
+  if (id==='account') loadAccount();
+  if (id==='auth' && TOKEN) show('account');
 }
+
+// ================== PRODUCTS ==================
+async function loadProducts(){
+  if (apiOn()){
+    try{
+      const r = await fetch(API_URL+'/api/products');
+      if (r.ok){
+        const rows = await r.json();
+        PRODUCTS = rows.map(p=>({ ...p, icon:'🧉', bg:'#9FE1CB' }));
+        renderProducts(); return;
+      }
+    }catch(e){}
+    $('products-status').textContent = 'Showing local catalog (API not reachable right now).';
+  }
+  PRODUCTS = FALLBACK_PRODUCTS;
+  renderProducts();
+}
+function renderProducts(){
+  $('products-grid').innerHTML = PRODUCTS.map(p=>`
+    <div class="card">
+      <div class="img" style="background:${p.bg||'#9FE1CB'};">${p.icon||'🧉'}</div>
+      <div class="body">
+        <h4>${p.title.replace(' - Yerba Mate','')}</h4>
+        <div class="note">${p.size_label||''}</div>
+        <div class="price">${money(p.price_cents)}</div>
+        <button class="addbtn" onclick="addToCart('${p.sku}')">Add to the box</button>
+      </div>
+    </div>`).join('');
+}
+
+// ================== CART ==================
+function addToCart(sku){
+  CART[sku] = (CART[sku]||0)+1;
+  updateCartCount();
+  show('cart');
+}
+function updateCartCount(){
+  $('cart-count').textContent = Object.values(CART).reduce((a,b)=>a+b,0);
+}
+function changeQty(sku,d){
+  CART[sku] = (CART[sku]||0)+d;
+  if (CART[sku]<=0) delete CART[sku];
+  updateCartCount(); renderCart();
+}
+function cartLines(){
+  return Object.entries(CART).map(([sku,qty])=>{
+    const p = PRODUCTS.find(x=>x.sku===sku);
+    return p ? {sku, qty, title:p.title, price_cents:p.price_cents} : null;
+  }).filter(Boolean);
+}
+function renderCart(){
+  const lines = cartLines();
+  $('order-done').style.display='none';
+  if (!lines.length){
+    $('cart-items').innerHTML = '<p style="text-align:center;padding:24px 0;">The box is empty. Let\'s fix that — the kettle\'s already on. 🧉</p>';
+    $('cart-totals').innerHTML=''; $('checkout-form').style.display='none';
+    $('savings-box').style.display='none'; $('shipbar-wrap').style.display='none';
+    return;
+  }
+  $('cart-items').innerHTML = lines.map(l=>`
+    <div class="row">
+      <span>${l.title.replace(' - Yerba Mate','')}</span>
+      <span class="qty">
+        <button onclick="changeQty('${l.sku}',-1)">−</button>${l.qty}<button onclick="changeQty('${l.sku}',1)">+</button>
+        <b style="min-width:64px;text-align:right;">${money(l.price_cents*l.qty)}</b>
+      </span>
+    </div>`).join('');
+
+  const subtotal = lines.reduce((a,l)=>a+l.price_cents*l.qty,0);
+  const shipping = subtotal>=FREE_SHIPPING_CENTS ? 0 : FLAT_SHIPPING_CENTS;
+  const total = subtotal+shipping;
+
+  $('shipbar-wrap').style.display='block';
+  if (shipping===0){
+    $('shipbar-text').innerHTML = '<b>Shipping\'s on us.</b> You filled the box past $75 — Abuela covers it. 🧉';
+    $('shipbar-fill').style.width='100%';
+  } else {
+    const falta = FREE_SHIPPING_CENTS-subtotal;
+    $('shipbar-text').innerHTML = `One box ships the same whether it's half full or packed. Add <b>${money(falta)}</b> more and we cover the shipping.`;
+    $('shipbar-fill').style.width = Math.min(100, Math.round(subtotal/FREE_SHIPPING_CENTS*100))+'%';
+  }
+
+  // ---- Comparador de ahorro (analisis del free shipping oculto) ----
+  const marketEst = Math.round(subtotal*MARKET_MULTIPLIER);
+  const saved = marketEst - total;
+  $('savings-box').style.display='block';
+  $('savings-box').innerHTML = saved>0
+    ? `<b>The honest math:</b> at typical marketplace pricing (shipping hidden in the price), a box like this runs about <b>${money(marketEst)}</b>. Here: ${money(subtotal)} + ${shipping? 'real shipping '+money(shipping):'free shipping'} = <b>${money(total)}</b>. You keep about <b>${money(saved)}</b> — same yerba, no games. <span class="muted">(marketplace estimate is approximate)</span>`
+    : `<b>The honest math:</b> price near cost + real shipping, shown up front. No hidden anything.`;
+
+  $('cart-totals').innerHTML = `
+    <div class="row"><span>Subtotal</span><b>${money(subtotal)}</b></div>
+    <div class="row"><span>Shipping (one box, one fee)</span><b>${shipping? money(shipping):'FREE'}</b></div>
+    <div class="row" style="font-size:17px;"><span>Total</span><b>${money(total)}</b></div>`;
+
+  $('checkout-form').style.display = 'block';
+  if (ME){ $('co-name').value = ME.name||''; $('co-email').value = ME.email||''; }
+}
+
+async function placeOrder(){
+  const m = $('cart-msg'); m.className='msg';
+  if (!apiOn()){ m.className='msg err'; m.textContent='Store is in preview mode — ordering opens soon.'; return; }
+  const email = $('co-email').value.trim();
+  const name = $('co-name').value.trim();
+  if (!email || !name){ m.className='msg err'; m.textContent='Name and email are required.'; return; }
+  const body = {
+    email,
+    items: cartLines().map(l=>({sku:l.sku, quantity:l.qty})),
+    shipping: {
+      name, address1:$('co-addr1').value, address2:$('co-addr2').value,
+      city:$('co-city').value, state:$('co-state').value, zip:$('co-zip').value,
+    }
+  };
+  try{
+    const r = await fetch(API_URL+'/api/orders',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(body)});
+    const data = await r.json();
+    if (!r.ok){ m.className='msg err'; m.textContent = data.error||'Could not place the order.'; return; }
+    CART = {}; updateCartCount();
+    $('cart-items').innerHTML=''; $('cart-totals').innerHTML='';
+    $('checkout-form').style.display='none'; $('savings-box').style.display='none'; $('shipbar-wrap').style.display='none';
+    $('done-number').textContent = data.order_number;
+    $('order-done').style.display='block';
+    m.className='msg';
+  }catch(e){ m.className='msg err'; m.textContent='Network error — try again.'; }
+}
+
+// ================== FAMILY ==================
+function toggleAuth(showRegister){
+  $('login-box').style.display = showRegister? 'none':'block';
+  $('register-box').style.display = showRegister? 'block':'none';
+}
+function fillMonthDay(){
+  const months=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+  ['rg-bmonth','rg-petmonth'].forEach(id=>{
+    months.forEach((mn,i)=> $(id).insertAdjacentHTML('beforeend',`<option value="${i+1}">${mn}</option>`));
+  });
+  ['rg-bday','rg-petday'].forEach(id=>{
+    for(let d=1;d<=31;d++) $(id).insertAdjacentHTML('beforeend',`<option value="${d}">${d}</option>`);
+  });
+}
+async function doRegister(){
+  const m=$('auth-msg'); m.className='msg';
+  if (!apiOn()){ m.className='msg err'; m.textContent='Accounts open soon — check back shortly.'; return; }
+  const body = {
+    name: $('rg-name').value.trim(),
+    email: $('rg-email').value.trim(),
+    password: $('rg-pass').value,
+    phone: $('rg-phone').value.trim()||null,
+    birthday_month: $('rg-bmonth').value? Number($('rg-bmonth').value):null,
+    birthday_day: $('rg-bday').value? Number($('rg-bday').value):null,
+    mate_circle: $('rg-circle').value.trim()||null,
+    marketing_opt_in: $('rg-optin').checked,
+    celebrate_mothers_day: $('rg-mday').checked,
+    celebrate_fathers_day: $('rg-fday').checked,
+    celebrate_christmas: $('rg-xmas').checked,
+    pets: $('rg-petname').value.trim()? [{
+      name: $('rg-petname').value.trim(),
+      birthday_month: $('rg-petmonth').value? Number($('rg-petmonth').value):null,
+      birthday_day: $('rg-petday').value? Number($('rg-petday').value):null,
+    }]:[],
+  };
+  try{
+    const r = await fetch(API_URL+'/api/family/register',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(body)});
+    const data = await r.json();
+    if (!r.ok){ m.className='msg err'; m.textContent=data.error||'Could not create your account.'; return; }
+    TOKEN = data.token; localStorage.setItem('abuela_token', TOKEN);
+    ME = data.customer; onAuthChange(); show('account');
+  }catch(e){ m.className='msg err'; m.textContent='Network error — try again.'; }
+}
+async function doLogin(){
+  const m=$('auth-msg'); m.className='msg';
+  if (!apiOn()){ m.className='msg err'; m.textContent='Accounts open soon — check back shortly.'; return; }
+  try{
+    const r = await fetch(API_URL+'/api/family/login',{method:'POST',headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({email:$('li-email').value.trim(), password:$('li-pass').value})});
+    const data = await r.json();
+    if (!r.ok){ m.className='msg err'; m.textContent=data.error||'Login failed.'; return; }
+    TOKEN = data.token; localStorage.setItem('abuela_token', TOKEN);
+    ME = data.customer; onAuthChange(); show('account');
+  }catch(e){ m.className='msg err'; m.textContent='Network error — try again.'; }
+}
+function doLogout(){
+  TOKEN=null; ME=null; localStorage.removeItem('abuela_token');
+  onAuthChange(); show('home');
+}
+function onAuthChange(){
+  $('nav-auth').style.display = TOKEN? 'none':'inline';
+  $('nav-account').style.display = TOKEN? 'inline':'none';
+}
+async function loadAccount(){
+  if (!TOKEN){ show('auth'); return; }
+  if (!apiOn()){ return; }
+  try{
+    const r = await fetch(API_URL+'/api/family/me',{headers:{Authorization:'Bearer '+TOKEN}});
+    if (r.status===401){ doLogout(); return; }
+    ME = await r.json();
+    $('acct-hello').textContent = 'Hola, '+ME.name+' 🧉';
+    const ro = await fetch(API_URL+'/api/family/orders',{headers:{Authorization:'Bearer '+TOKEN}});
+    const orders = await ro.json();
+    $('acct-orders').innerHTML = orders.length
+      ? orders.map(o=>`<div class="orderbox"><span class="onum">${o.order_number}</span> <span class="badge">${o.status}</span><br>
+          ${o.items.map(i=>i.quantity+'× '+i.title.replace(' - Yerba Mate','')).join(', ')}<br>
+          <b>${money(o.total_cents)}</b> · ${new Date(o.created_at).toLocaleDateString()}</div>`).join('')
+      : '<p class="muted">No orders yet. The kettle\'s on whenever you\'re ready.</p>';
+  }catch(e){ $('acct-orders').innerHTML='<p class="muted">Could not load right now.</p>'; }
+}
+
+// ================== INIT ==================
+fillMonthDay();
+onAuthChange();
+loadProducts();
 </script>
 
 </body>
